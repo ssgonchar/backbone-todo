@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Мой App</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/todo.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Мой App</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#/todos">Home</a></li>
+                    <li><a href="#search/q/p1">Search</a></li>
+                    <li><a href="#about">About</a></li>
+                    <!--
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+                <!--
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+                    <li><a href="../navbar-static-top/">Static top</a></li>
+                    <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                </ul>
+                -->
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+    <div class="row">
+        <section id="todoapp">
+            <header id="header">
+            </header>
+            <!-- /#header -->
+
+            <section id="main">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Менеджер заданий</div>
+                    <div class="panel-body">
+                        <p id="info">
+                            Двойной клик для редактирования задания.
+                        </p>
+
+                        <div class="checkbox left">
+                            <label>
+                                <input type="checkbox" class="checkbox" id="toggle-all"> Отметить все как выполненные.
+                            </label>
+                        </div>
+                        <!-- /#info -->
+                    </div>
+                    <ul id="todo-list" class="list-group">
+                        <li class="list-group-item active">
+                            <input type="text" id="new-todo" class="form-control" placeholder="Текст задания..."
+                                   autofocus>
+                        </li>
+                    </ul>
+                    <div class="panel-footer">
+                        <div id="footer">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /#todo-list -->
+            </section>
+            <!-- /#main -->
+        </section>
+        <!-- /#todoapp -->
+    </div>
+</div>
+
+<!-- Шаблоны -->
+
+<!-- Запись в планировщике -->
+<script type="text/template" id="item-template">
+    <div class="view clearfix">
+        <input class="toggle" type="checkbox" <%= completed ? 'checked="checked"' : '' %>>
+        <label><%= title %></label>
+        <button class="btn btn-danger destroy pull-right">
+            <i class="glyphicon glyphicon-remove"></i>
+        </button>
+    </div>
+    <input type="text" class="form-control edit" value="<%- title %>">
+</script>
+
+<!-- Нижний колонтитул -->
+<script type="text/template" id="stats-template">
+    <label>Выбрать </label>
+    <div class="btn-group" id="filters" role="group" aria-label="...">
+        <a href="#/todos" class="btn btn-default selected active">Все</a>
+        <a href="#/todos/filtered/active" class="btn btn-default">Активные</a>
+        <a href="#/todos/filtered/completed" class="btn btn-default">Завершенные</a>
+        <% if (completed) { %>
+        <button id="clear-completed" class="btn btn-default">Удалить завершенные <span class="badge"><%= completed %></span></button>
+        <% } %>
+    </div>
+    <strong>Осталось: </strong><span id="todo-count" class="badge"><strong><%= remaining %></strong>
+    <%= remaining === 1 ? 'задание' : 'заданий' %></span>
+</script>
+
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+<script type="text/javascript" src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/models/todo.js"></script>
+<script type="text/javascript" src="js/collections/todos.js"></script>
+<script type="text/javascript" src="js/views/todos.js"></script>
+<script type="text/javascript" src="js/views/app.js"></script>
+<script type="text/javascript" src="js/routers/router.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

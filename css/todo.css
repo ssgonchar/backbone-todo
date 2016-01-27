@@ -1,0 +1,15 @@
+.edit {
+    display: none;
+}
+
+.completed label {
+    text-decoration: line-through;
+}
+
+.editing .edit {
+    display: block;
+}
+
+.editing .view {
+    display: none;
+}

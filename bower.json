@@ -1,0 +1,10 @@
+{
+  "name": "todo-backbone",
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "backbone": "~1.2.3",
+    "backbone.localStorage": "~1.1.16"
+  },
+  "homepage": "https://github.com/ssgonchar/backbone-todo",
+  "version": "1.0.0"
+}
