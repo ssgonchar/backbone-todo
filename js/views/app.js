@@ -52,6 +52,7 @@ app.AppView = Backbone.View.extend({
         this.$input = this.$('#new-todo');
         this.$footer = this.$('#footer');
         this.$main = this.$('#main');
+        this.$list = this.$('#todo-list');
 
         // Вызвать когда происходит событие коллекции app.Todos.trigger('add').
         this.listenTo(app.Todos, 'add', this.addOne);
@@ -80,8 +81,9 @@ app.AppView = Backbone.View.extend({
         var completed = app.Todos.completed().length;
         // Получаем количество незавершенных заданий.
         var remaining = app.Todos.remaining().length;
+        this.$main.show();
         if (app.Todos.length) {
-            this.$main.show();
+            //this.$list.show();
             this.$footer.show();
 
             // Обновляем счетчики.
@@ -112,7 +114,7 @@ app.AppView = Backbone.View.extend({
 
         } else {
             // Прячем список заданий и счетчики, если нет добавленных заданий.
-            this.$main.hide();
+            //this.$list.hide();
             this.$footer.hide();
         }
         this.allCheckbox.checked = !remaining;
